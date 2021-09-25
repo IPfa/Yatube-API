@@ -1,17 +1,11 @@
-from posts.models import Comment, Follow, Group, Post, User
 from rest_framework import filters, generics, permissions, viewsets
 from rest_framework.exceptions import APIException
 from rest_framework.pagination import LimitOffsetPagination
 
+from posts.models import Comment, Follow, Group, Post, User
 from .permissions import CustomPermission
 from .serializers import (CommentSerializer, FollowSerializer, GroupSerializer,
                           PostSerializer)
-
-
-class AccessForbidden(APIException):
-    status_code = 403
-    default_detail = 'Вы не можете изменять записи других пользоватетей.'
-    default_code = 'forbidden'
 
 
 class SubscriptionForbidden(APIException):
@@ -55,7 +49,7 @@ class GroupViewSet(viewsets.ReadOnlyModelViewSet):
 class FollowList(generics.ListCreateAPIView):
     serializer_class = FollowSerializer
     filter_backends = (filters.SearchFilter,)
-    search_fields = ('following__username',)
+    search_fields = ('=following__username',)
 
     def get_queryset(self):
         user = User.objects.get(username=self.request.user)
@@ -64,8 +58,6 @@ class FollowList(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         user = self.request.user
         following = serializer.validated_data['following']
-        if Follow.objects.filter(user=user, following=following).exists():
-            raise SubscriptionForbidden()
-        elif user == following:
+        if user == following:
             raise SubscriptionForbidden()
         serializer.save(user=user, following=following)
