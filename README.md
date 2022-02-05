@@ -1,84 +1,35 @@
-## api_final
-api_final
+# Yatube-API
 
-# Описание
-Програмный интерфейс (API) написанный для web-приложения Yatube.
+REST API веб приложения Yatube написанный на Python. Изначально было создано веб приложение Yatube. Его можно найти в списке моих репозиториев. Приложение написано на связке Django и Python без использования современного фронтенда. В основе лежит рендеринг HTML страниц и использование CSS. Далее в качестве развитися проекта был написан этот API.
 
-# Установка
+# Стек Технологий
+Python, Django, Django REST, SQLite.
 
-Клонировать репозиторий и перейти в него в командной строке:
-
-```sh
-git clone https://github.com/IPfa/api_final_yatube.git
+# Запуск
+Развернуть виртуальное окружение.
 ```
-
-```sh
-cd yatube_api
+python3.7 -m venv venv
 ```
-
-Cоздать и активировать виртуальное окружение:
-
-```sh
-python3 -m venv env
+Запустить виртуальное окружение.
 ```
-
-```sh
-source env/bin/activate
+source venv/bin/activate
 ```
-
-Установить зависимости из файла requirements.txt:
-
-```sh
-python3 -m pip install --upgrade pip
+Установить зависимости.
 ```
-
-```sh
 pip install -r requirements.txt
 ```
-
-Выполнить миграции:
-
-```sh
-python3 manage.py migrate
+Перейти в папку Yatube_api и запустить проект.
 ```
-
-Запустить проект:
-
-```sh
 python3 manage.py runserver
 ```
-
-# Примеры запросов
-
-http://127.0.0.1:8000/api/v1/posts/ GET
-
-```sh
-{
-  "count": 123,
-  "next": "http://api.example.org/accounts/?offset=400&limit=100",
-  "previous": "http://api.example.org/accounts/?offset=200&limit=100",
-  "results": [
-    {
-      "id": 0,
-      "author": "string",
-      "text": "string",
-      "pub_date": "2019-08-24T14:15:22Z",
-      "image": "string",
-      "group": 0
-    }
-  ]
-}
+Команды для сбора статики, выполнения миграций и создания суперпользователя.
 ```
-
-http://127.0.0.1:8000/api/v1/groups/ GET
-
-```sh
-[
-  {
-    "id": 0,
-    "title": "string",
-    "slug": "string",
-    "description": "string"
-  }
-]
+python3 manage.py migrate
+python3 manage.py collectstatic
+python3 manage.py createsuperuser
 ```
+**Проект доступен по адресу:**
+http://127.0.0.1/
+
+# Авторы
+[IPfa](https://github.com/IPfa)
