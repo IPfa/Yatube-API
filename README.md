@@ -1,35 +1,33 @@
 # Yatube-API
+REST API for web application Yatube written on Python. This is a continuation of Yatube project (https://github.com/IPfa/Yatube). Yatube was developed using HTML rendering and CSS. Modern approach consists of separating frontend and backend of web application. Backend is an API in such case. Yatube-API is an learning project corresponding to this approach. API has exactly the same functionallity as Yatube. Djoser library was used as a solution for new users creation and authentication.
 
-REST API веб приложения Yatube написанный на Python. Изначально было создано веб приложение Yatube. Его можно найти в списке моих репозиториев. Приложение написано на связке Django и Python без использования современного фронтенда. В основе лежит рендеринг HTML страниц и использование CSS. Далее в качестве развитися проекта был написан этот API.
+# Technology Stack
+Python, Django, Django REST, SQLite, Djoser.
 
-# Стек Технологий
-Python, Django, Django REST, SQLite.
-
-# Запуск
-Развернуть виртуальное окружение.
+# Launching
+Create Python environment.
 ```
 python3.7 -m venv venv
 ```
-Запустить виртуальное окружение.
+Start Python environment.
 ```
 source venv/bin/activate
 ```
-Установить зависимости.
+Perform migrations.
 ```
-pip install -r requirements.txt
+python3 manage.py migrate
 ```
-Перейти в папку Yatube_api и запустить проект.
+Run the project.
 ```
 python3 manage.py runserver
 ```
-Команды для сбора статики, выполнения миграций и создания суперпользователя.
+For static files collection and creating of superuser perform following commands.
 ```
-python3 manage.py migrate
 python3 manage.py collectstatic
 python3 manage.py createsuperuser
 ```
-**Проект доступен по адресу:**
-http://127.0.0.1/
+**Project is available on:**
+http://127.0.0.1:8000/
 
-# Авторы
+# Authors
 [IPfa](https://github.com/IPfa)
